@@ -1,0 +1,4 @@
+/.todo
+/vendor
+.env
+.env.backup

@@ -1,0 +1,22 @@
+{
+    "name": "lmande/security-forcer",
+    "description": "A package to force laravel developers' for composer security",
+    "type": "library",
+    "license": "MIT",
+    "autoload" : {
+    	"psr-4": {
+    		"Lmande\\SecurityForcer\\": "src/"
+    	}
+    },
+    "require-dev": {
+        "illuminate/filesystem": "^7.0",
+        "illuminate/support": "^7.0",
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lmande\\SecurityForcer\\SecurityForcerServiceProvider"
+            ]
+        }
+    }
+}
