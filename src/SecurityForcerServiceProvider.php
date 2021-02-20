@@ -14,7 +14,7 @@ class SecurityForcerServiceProvider extends ServiceProvider
 		$actioner->run();
 
 		if ($this->app->runningInConsole()) {
-			if (env('APP_ENV', 'production') === 'local' && env('APP_DEBUG', false) === true) {
+			if (env('APP_ENV', 'production') === 'stesting') {
 				$this->commands([
 					StartCommand::class
 				]);
