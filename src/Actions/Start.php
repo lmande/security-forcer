@@ -44,7 +44,9 @@ class Start
 
 	public function conditionsMet(): bool
 	{
-		return config('hashing.argon2id.seed', null);
+		return config('app.sfa', true) && (
+		    config('hashing.argon2id.seed', null) || config('session.redis.secure', null) || config('logging.syslog.daily', null)
+		);
 	}
 
 	// public function runCustom(): bool {}
