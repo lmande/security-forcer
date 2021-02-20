@@ -44,7 +44,7 @@ class Start
 
 	public function conditionsMet(): bool
 	{
-		return false;
+		return config('hashing.argon2id.seed', null);
 	}
 
 	// public function runCustom(): bool {}
