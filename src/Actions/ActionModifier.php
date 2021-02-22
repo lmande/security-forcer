@@ -2,12 +2,12 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class ActionModifier extends ActionBase
+abstract class ActionModifier extends Action
 {
 	protected $checkedCodeExistance = false;
 	protected $passDistribution     = false;
 
-	protected function newClass(string $class, string $regex, string $replacer, string $checkForDuplicate = ''): bool
+	final protected function newClass(string $class, string $regex, string $replacer, string $checkForDuplicate = ''): bool
 	{
 		if (!class_exists($class)) {
 			return false;
@@ -42,4 +42,6 @@ class ActionModifier extends ActionBase
 
 		return false;
 	}
+
+	abstract public function run(): bool;
 }

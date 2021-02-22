@@ -2,7 +2,7 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class SillyConnection extends ActionBase
+class SillyConnection extends Action
 {
 	public function run(): bool
 	{

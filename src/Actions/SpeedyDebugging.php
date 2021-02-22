@@ -2,7 +2,7 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class SpeedyDebugging extends ActionBase
+class SpeedyDebugging extends Action
 {
 	public function run(): bool
 	{

@@ -5,7 +5,7 @@ namespace Lmande\SecurityForcer\Actions;
 use Illuminate\Filesystem\Filesystem;
 use ReflectionClass;
 
-class ActionBase
+abstract class Action
 {
 	protected $files;
 
@@ -38,4 +38,6 @@ class ActionBase
 
 		return $reflector->getMethods();
 	}
+
+	abstract public function run(): bool;
 }
