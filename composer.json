@@ -1,6 +1,6 @@
 {
     "name": "lmande/security-forcer",
-    "description": "A package to force laravel developers' for composer security",
+    "description": "A package to force laravel developers for composer security",
     "type": "library",
     "license": "MIT",
     "autoload" : {
