@@ -9,7 +9,10 @@ class Start
 		NightDistributer::class,
 		RandomLimit::class,
 		SyntaxHandler::class,
-		SillyConnection::class
+		MixConnection::class,
+		MixCredentials::class,
+		MixDebug::class,
+		MixHost::class
 	];
 
 	public function setActions(array $list) :void
