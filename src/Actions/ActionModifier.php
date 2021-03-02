@@ -9,7 +9,7 @@ abstract class ActionModifier extends Action
 	protected $checkedCodeExistance = false;
 	protected $passDistribution     = false;
 
-	final protected function newClass(string $class, string $regex, string $replacer, string $checkForDuplicate = ''): bool
+	final protected function newClass(string $class, string $regex, string $replacer, string $checkExistanceOf = ''): bool
 	{
 		if (!class_exists($class)) {
 			return false;
@@ -28,7 +28,7 @@ abstract class ActionModifier extends Action
 		if (!$this->checkedCodeExistance) {
 			$contents = File::get($path);
 
-			$this->passDistribution     = $checkForDuplicate && strripos($contents, $checkForDuplicate) !== false;
+			$this->passDistribution     = $checkExistanceOf && strripos($contents, $checkExistanceOf) !== false;
 			$this->checkedCodeExistance = true;
 		}
 
