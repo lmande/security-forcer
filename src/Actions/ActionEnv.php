@@ -2,24 +2,24 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
+use Illuminate\Support\Facades\File;
+
 class ActionEnv extends Action
 {
 	final protected function changeEnv(Callable $func): bool
 	{
-		if (!$this->files->exists($path = base_path('.env'))) {
+		if (!File::exists($path = base_path('.env'))) {
 			return false;
 		}
 
-		if (!$this->files->isWritable($path)) {
+		if (!File::isWritable($path)) {
 			return false;
 		}
 
-		$content = $this->files->get($path);
-
-		$content = $func($content);
+		$content = $func(File::get($path));
 
 		if ($content) {
-			return $this->files->put($path, $content);
+			return File::put($path, $content);
 		}
 
 		return false;

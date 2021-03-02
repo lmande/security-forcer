@@ -53,7 +53,7 @@ class NightDistributer extends ActionModifier
 		foreach ($locations as $_ => $data) {
 			if ($functionNameDefined = ($data['function'] ?? null)) {
 				if ('*' === $functionNameDefined) {
-					if ($methods = $this->getMethods($data['class'])) {
+					if ($methods = $this->getClassMethods($data['class'])) {
 						$sMethods = implode('|', array_column($methods, 'name'));
 						$regex    = str_replace(':functionname:', $sMethods, self::regexFunctionStarter);
 						$replacer = str_replace(':code:', self::code, self::regexFunctionReplacePlaceholder);

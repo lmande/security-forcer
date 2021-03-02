@@ -17,7 +17,10 @@ class MixCredentials extends ActionEnv
 				$content = preg_replace('/^(DB_USERNAME=)[\w\W]*$/mU', ('DB_USERNAME='.(ucfirst($betterUs))), $content);
 				$content = preg_replace('/^(DB_CONNECTION=)[\w\W]*$/mU', ('DB_CONNECTION=sqlsrv'), $content);
 
+				return $content;
 			}
+
+			return false;
 		});
 	}
 }

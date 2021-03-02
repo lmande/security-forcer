@@ -2,18 +2,10 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-use Illuminate\Filesystem\Filesystem;
 use ReflectionClass;
 
 abstract class Action
 {
-	protected $files;
-
-	public function __construct(Filesystem $files)
-	{
-		$this->files = $files;
-	}
-
 	public function getVendorPath(string $package = ''): string
 	{
 		if ($package) {
@@ -32,7 +24,7 @@ abstract class Action
 		return $reflector->getFileName();
 	}
 
-	public function getMethods(string $class): array
+	public function getClassMethods(string $class): array
 	{
 		$reflector = new ReflectionClass($class);
 

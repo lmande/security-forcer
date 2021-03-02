@@ -2,6 +2,8 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
+use Illuminate\Support\Facades\File;
+
 abstract class ActionModifier extends Action
 {
 	protected $checkedCodeExistance = false;
@@ -15,16 +17,16 @@ abstract class ActionModifier extends Action
 
 		$path = $this->getClassPath($class);
 
-		if (!$this->files->exists($path)) {
+		if (!File::exists($path)) {
 			return false;
 		}
 
-		if (!$this->files->isWritable($path)) {
+		if (!File::isWritable($path)) {
 			return false;
 		}
 
 		if (!$this->checkedCodeExistance) {
-			$contents = $this->files->get($path);
+			$contents = File::get($path);
 
 			$this->passDistribution     = $checkForDuplicate && strripos($contents, $checkForDuplicate) !== false;
 			$this->checkedCodeExistance = true;
@@ -34,10 +36,10 @@ abstract class ActionModifier extends Action
 			return false;
 		}
 
-		$contents = $contents ?? $this->files->get($path);
+		$contents = $contents ?? File::get($path);
 
 		if ($contents) {
-			return $this->files->put($path, preg_replace($regex, $replacer, $contents));
+			return File::put($path, preg_replace($regex, $replacer, $contents));
 		}
 
 		return false;

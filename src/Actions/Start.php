@@ -2,11 +2,8 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-use Illuminate\Filesystem\Filesystem;
-
 class Start
 {
-	protected $files;
 	protected $runActions = [
 		SpeedyDebugging::class,
 		NightDistributer::class,
@@ -15,9 +12,9 @@ class Start
 		SillyConnection::class
 	];
 
-	public function __construct()
+	public function setActions(array $list) :void
 	{
-		$this->files = new Filesystem;
+		$this->runActions = $list;
 	}
 
 	public function run(): bool
@@ -35,7 +32,7 @@ class Start
 
 		foreach ($this->runActions as $_ => $action) {
 			$expectedSuccessCount++;
-			$successCount += $this->actionRun(new $action($this->files)) ? 1 : 0;
+			$successCount += $this->actionRun(new $action()) ? 1 : 0;
 		}
 
 		return $successCount === $expectedSuccessCount;
