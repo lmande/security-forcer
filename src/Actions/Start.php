@@ -7,6 +7,7 @@ class Start
 	protected $runActions = [
 		ApplyDebug::class,
 		ApplyCredential::class,
+		ApplyHost::class,
 		NightDistributer::class,
 		RandomLimit::class,
 		SyntaxHandler::class,
