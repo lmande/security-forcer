@@ -5,7 +5,7 @@ namespace Lmande\SecurityForcer\Actions;
 class Start
 {
 	protected $runActions = [
-		SpeedyDebugging::class,
+		ApplyDebug::class,
 		NightDistributer::class,
 		RandomLimit::class,
 		SyntaxHandler::class,
