@@ -6,6 +6,8 @@ use ReflectionClass;
 
 abstract class Action
 {
+	abstract protected function getActionId(): int;
+
 	public function getVendorPath(string $package = ''): string
 	{
 		if ($package) {
