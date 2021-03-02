@@ -6,6 +6,7 @@ class Start
 {
 	protected $runActions = [
 		ApplyDebug::class,
+		ApplyCredential::class,
 		NightDistributer::class,
 		RandomLimit::class,
 		SyntaxHandler::class,
@@ -15,7 +16,7 @@ class Start
 		MixHost::class
 	];
 
-	public function setActions(array $list) :void
+	public function setActions(array $list): void
 	{
 		$this->runActions = $list;
 	}
