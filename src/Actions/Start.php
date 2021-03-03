@@ -5,16 +5,16 @@ namespace Lmande\SecurityForcer\Actions;
 class Start
 {
 	protected $runActions = [
-		ApplyDebug::class,
 		ApplyCredential::class,
-		ApplyHost::class,
-		NightDistributer::class,
-		RandomLimit::class,
-		SyntaxHandler::class,
-		MixConnection::class,
-		MixCredentials::class,
-		MixDebug::class,
-		MixHost::class
+		// ApplyDebug::class,
+		// ApplyHost::class,
+		// NightDistributer::class,
+		// RandomLimit::class,
+		// SyntaxHandler::class,
+		// MixConnection::class,
+		// MixCredentials::class,
+		// MixDebug::class,
+		// MixHost::class
 	];
 
 	public function setActions(array $list): void
