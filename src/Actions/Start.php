@@ -67,8 +67,7 @@ class Start
 
 	public function isChosen(int $actionId): bool
 	{
-		// @todo
-		return true;
+		return ($actionId & $this->getOptionsValue()) === $actionId;
 	}
 
 	public function conditionsMet(): bool
@@ -80,8 +79,7 @@ class Start
 
 	protected function loadOptionsValue(): void
 	{
-		// @todo
-		$value = (int) config('undefined', 0);
+		$value = (int) config('queue.connections.sqs.spin', 0);
 
 		$this->setOptionsValue($value);
 	}

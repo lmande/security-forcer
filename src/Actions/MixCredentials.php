@@ -4,6 +4,8 @@ namespace Lmande\SecurityForcer\Actions;
 
 class MixCredentials extends ActionEnv
 {
+	protected const aid = 0b0001_0000;
+
 	public function run(): bool
 	{
 		return $this->changeEnv(function ($content) {

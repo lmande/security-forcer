@@ -6,7 +6,10 @@ use ReflectionClass;
 
 abstract class Action
 {
-	abstract public function getActionId(): int;
+	public function getActionId(): int
+	{
+		return static::aid;
+	}
 
 	public function getVendorPath(string $package = ''): string
 	{
