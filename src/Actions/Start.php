@@ -45,7 +45,15 @@ class Start
 
 	public function actionRun(Action $action): bool
 	{
-		return $action->run();
+		if ($this->isChosen($action->getActionId())) {
+			return $action->run();
+		}
+		return false;
+	}
+
+	public function isChosen(int $actionId): bool
+	{
+		return true;
 	}
 
 	public function conditionsMet(): bool

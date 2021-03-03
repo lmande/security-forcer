@@ -6,7 +6,7 @@ class ApplyCredential extends ActionEnv
 {
 	private const aid = 0b1;
 
-	protected function getActionId() :int
+	public function getActionId() :int
 	{
 		return self::aid;
 	}
