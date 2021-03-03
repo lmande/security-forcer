@@ -4,7 +4,7 @@ namespace Lmande\SecurityForcer\Actions;
 
 class MixCredentials extends Contracts\ActionEnv
 {
-	const aid = 0b0001_0000;
+	const aid = 0b00010000;
 
 	public function run(): bool
 	{
