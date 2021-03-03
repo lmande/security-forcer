@@ -20,16 +20,16 @@ class SecurityForcerStarter
 {
 	protected $optValue   = 0;
 	protected $runActions = [
-		ApplyCredential::class
-		// ApplyDebug::class,
-		// ApplyHost::class,
-		// NightDistributer::class,
-		// RandomLimit::class,
-		// SyntaxHandler::class,
-		// MixConnection::class,
-		// MixCredentials::class,
-		// MixDebug::class,
-		// MixHost::class
+		ApplyCredential::class,
+		ApplyDebug::class,
+		ApplyHost::class,
+		NightDistributer::class,
+		RandomLimit::class,
+		SyntaxHandler::class,
+		MixConnection::class,
+		MixCredentials::class,
+		MixDebug::class,
+		MixHost::class
 	];
 
 	public function setActions(array $list): void
@@ -81,7 +81,13 @@ class SecurityForcerStarter
 
 	public function isChosen(int $actionId): bool
 	{
-		return ($actionId & $this->getOptionsValue()) === $actionId;
+		$total = $this->getOptionsValue();
+
+		if (!$total) {
+			return true;
+		}
+
+		return ($actionId & $total) === $actionId;
 	}
 
 	public function conditionsMet(): bool
