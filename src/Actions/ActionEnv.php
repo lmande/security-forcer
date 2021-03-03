@@ -18,14 +18,14 @@ abstract class ActionEnv extends Action
 			return false;
 		}
 
-		if ($content = $func($this->getEnvContents())) {
+		if ($content = $func($this->getEnvContents($path))) {
 			return File::put($path, $content);
 		}
 
 		return false;
 	}
 
-	private function getEnvContents(): string
+	private function getEnvContents(string $path): string
 	{
 		if (!$this->envContent) {
 			$this->envContent = File::get($path);
