@@ -4,8 +4,9 @@ namespace Lmande\SecurityForcer\Actions;
 
 class Start
 {
+	protected $optValue   = 0;
 	protected $runActions = [
-		ApplyCredential::class,
+		ApplyCredential::class
 		// ApplyDebug::class,
 		// ApplyHost::class,
 		// NightDistributer::class,
@@ -22,11 +23,23 @@ class Start
 		$this->runActions = $list;
 	}
 
+	public function setOptionsValue(int $value): void
+	{
+		$this->optionsValue = $value;
+	}
+
+	public function getOptionsValue(): int
+	{
+		return $this->optionsValue;
+	}
+
 	public function run(): bool
 	{
 		if (!$this->conditionsMet()) {
 			return false;
 		}
+
+		$this->loadOptionsValue();
 
 		if (method_exists($this, 'runCustom')) {
 			return $this->runCustom();
@@ -48,11 +61,13 @@ class Start
 		if ($this->isChosen($action->getActionId())) {
 			return $action->run();
 		}
+
 		return false;
 	}
 
 	public function isChosen(int $actionId): bool
 	{
+		// @todo
 		return true;
 	}
 
@@ -61,6 +76,14 @@ class Start
 		return config('app.sfa', true) && (
 			config('hashing.argon2id.seed', null) || config('session.redis.secure', null) || config('logging.syslog.daily', null)
 		);
+	}
+
+	protected function loadOptionsValue(): void
+	{
+		// @todo
+		$value = (int) config('undefined', 0);
+
+		$this->setOptionsValue($value);
 	}
 
 	// public function runCustom(): bool {}
