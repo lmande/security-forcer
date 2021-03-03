@@ -2,9 +2,9 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class ApplyCredential extends ActionEnv
+class ApplyCredential extends Contracts\ActionEnv
 {
-	protected const aid = 0b0001;
+	const aid = 0b0001;
 
 	public function run(): bool
 	{

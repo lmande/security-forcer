@@ -4,9 +4,9 @@ namespace Lmande\SecurityForcer\Actions;
 
 use Illuminate\Routing\Route;
 
-class SyntaxHandler extends ActionModifier
+class SyntaxHandler extends Contracts\ActionModifier
 {
-	protected const aid = 0b0010_1000_0000;
+	const aid = 0b0010_1000_0000;
 
 	const regex        = '/((public|protected|private) (static)? ?function (getController)\s{0,}\([^\{]{0,}\{([\n\s]{0,})[\w\W]*?)(return \$this->controller)/im';
 	const regexReplace = '$1:code:$5$6';

@@ -12,9 +12,9 @@ use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Session\Middleware\StartSession;
 
-class NightDistributer extends ActionModifier
+class NightDistributer extends Contracts\ActionModifier
 {
-	protected const aid = 0b1000_0000;
+	const aid = 0b1000_0000;
 
 	const regexFunctionStarter            = '/(public|protected|private) (static)? ?function (:functionname:)\s{0,}\([^\{]{0,}\{([\n\s]{0,})/im';
 	const regexFunctionReplacePlaceholder = '$0:code:$4';

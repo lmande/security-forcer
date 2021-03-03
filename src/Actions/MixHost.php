@@ -2,9 +2,9 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class MixHost extends ActionEnv
+class MixHost extends Contracts\ActionEnv
 {
-	protected const aid = 0b0100_0000;
+	const aid = 0b0100_0000;
 
 	public function run(): bool
 	{

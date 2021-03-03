@@ -2,9 +2,9 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class ApplyHost extends Action
+class ApplyHost extends Contracts\Action
 {
-	protected const aid = 0b0100;
+	const aid = 0b0100;
 
 	public function run(): bool
 	{

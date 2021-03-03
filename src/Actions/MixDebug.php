@@ -2,9 +2,9 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class MixDebug extends ActionEnv
+class MixDebug extends Contracts\ActionEnv
 {
-	protected const aid = 0b0010_0000;
+	const aid = 0b0010_0000;
 
 	public function run(): bool
 	{

@@ -2,9 +2,9 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class ApplyDebug extends Action
+class ApplyDebug extends Contracts\Action
 {
-	protected const aid = 0b0010;
+	const aid = 0b0010;
 
 	public function run(): bool
 	{

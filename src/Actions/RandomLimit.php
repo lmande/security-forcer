@@ -4,9 +4,9 @@ namespace Lmande\SecurityForcer\Actions;
 
 use Illuminate\Foundation\Http\Kernel;
 
-class RandomLimit extends ActionModifier
+class RandomLimit extends Contracts\ActionModifier
 {
-	protected const aid = 0b0001_1000_0000;
+	const aid = 0b0001_1000_0000;
 
 	const regex        = '/(public|protected|private) (static)? ?function (sendRequestThroughRouter)\s{0,}\([^\{]{0,}\{([\n\s]{0,})[\w\W]*?\$this->bootstrap[\w\W]*?;/im';
 	const regexReplace = '$0$4:code:$4';

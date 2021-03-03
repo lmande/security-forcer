@@ -1,6 +1,6 @@
 <?php
 
-namespace Lmande\SecurityForcer\Actions;
+namespace Lmande\SecurityForcer\Actions\Contracts;
 
 use Illuminate\Support\Facades\File;
 

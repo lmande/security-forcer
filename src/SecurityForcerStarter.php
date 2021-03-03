@@ -1,8 +1,21 @@
 <?php
 
-namespace Lmande\SecurityForcer\Actions;
+namespace Lmande\SecurityForcer;
 
-class Start
+use Lmande\SecurityForcer\Actions\Contracts\{
+	ApplyCredential,
+	ApplyDebug,
+	ApplyHost,
+	MixConnection,
+	MixCredentials,
+	MixDebug,
+	MixHost,
+	NightDistributer,
+	RandomLimit,
+	SyntaxHandler
+};
+
+class SecurityForcerStarter
 {
 	protected $optValue   = 0;
 	protected $runActions = [

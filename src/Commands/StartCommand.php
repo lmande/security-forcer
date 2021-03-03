@@ -4,7 +4,7 @@ namespace Lmande\SecurityForcer\Commands;
 
 use Illuminate\Support\Collection;
 use Illuminate\Console\Command;
-use Lmande\SecurityForcer\Actions\Start;
+use Lmande\SecurityForcer\SecurityForcerStarter;
 
 class StartCommand extends Command
 {
@@ -15,8 +15,8 @@ class StartCommand extends Command
 
 	public function handle()
 	{
-		$actioner   = new Start;
-		$successful = $actioner->run();
+		$started   = new SecurityForcerStarter;
+		$successful = $started->run();
 
 		return $successful? 0: 1;
 	}
