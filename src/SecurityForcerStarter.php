@@ -2,7 +2,8 @@
 
 namespace Lmande\SecurityForcer;
 
-use Lmande\SecurityForcer\Actions\Contracts\{
+use Lmande\SecurityForcer\Actions\Contracts\Action;
+use Lmande\SecurityForcer\Actions\{
 	ApplyCredential,
 	ApplyDebug,
 	ApplyHost,
