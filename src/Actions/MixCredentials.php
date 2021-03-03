@@ -6,7 +6,7 @@ class MixCredentials extends ActionEnv
 {
 	public function run(): bool
 	{
-		return $this->changeEnv(function (&$content) {
+		return $this->changeEnv(function ($content) {
 
 			if (stripos($content, 'DB_USERNAME') !== false) {
 

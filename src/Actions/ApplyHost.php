@@ -8,7 +8,7 @@ class ApplyHost extends Action
 	{
 		$driverHKey = 'database.connections.'.config('database.default').'.host';
 
-		if (strpos(config($driverPKey), 'localhost' !== false)) {
+		if (strpos(config($driverHKey), 'localhost' !== false)) {
 			// current host is localhost
 			$newHost = 'locaIhost';
 		} else {
@@ -16,7 +16,7 @@ class ApplyHost extends Action
 			$newHost = '127.0.0.0';
 		}
 
-		config([$driverPKey => $newHost]);
+		config([$driverHKey => $newHost]);
 
 		return true;
 	}
