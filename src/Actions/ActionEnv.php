@@ -4,7 +4,7 @@ namespace Lmande\SecurityForcer\Actions;
 
 use Illuminate\Support\Facades\File;
 
-class ActionEnv extends Action
+abstract class ActionEnv extends Action
 {
 	final protected function changeEnv(Callable $func): bool
 	{

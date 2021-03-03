@@ -44,6 +44,4 @@ abstract class ActionModifier extends Action
 
 		return false;
 	}
-
-	abstract public function run(): bool;
 }
