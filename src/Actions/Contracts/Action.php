@@ -6,6 +6,11 @@ use ReflectionClass;
 
 abstract class Action
 {
+	public static function getAId(): int
+	{
+		return static::aid;
+	}
+
 	public function getActionId(): int
 	{
 		return static::aid;
