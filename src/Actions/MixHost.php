@@ -4,7 +4,7 @@ namespace Lmande\SecurityForcer\Actions;
 
 class MixHost extends Contracts\ActionEnv
 {
-	const aid = 0b01000000;
+	const aid = 0b10000000;
 
 	public function run(): bool
 	{

@@ -4,7 +4,7 @@ namespace Lmande\SecurityForcer\Actions;
 
 class MixConnection extends Contracts\ActionEnv
 {
-	const aid = 0b1000;
+	const aid = 0b00010000;
 
 	public function run(): bool
 	{

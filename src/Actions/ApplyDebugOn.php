@@ -2,13 +2,13 @@
 
 namespace Lmande\SecurityForcer\Actions;
 
-class ApplyDebug extends Contracts\Action
+class ApplyDebugOn extends Contracts\Action
 {
-	const aid = 0b0010;
+	const aid = 0b0100;
 
 	public function run(): bool
 	{
-		config(['app.debug' => false]);
+		config(['app.debug' => true]);
 
 		return true;
 	}

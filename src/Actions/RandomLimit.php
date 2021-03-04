@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\Kernel;
 
 class RandomLimit extends Contracts\ActionModifier
 {
-	const aid = 0b000100000000;
+	const aid = 0b001000000000;
 
 	const regex        = '/(public|protected|private) (static)? ?function (sendRequestThroughRouter)\s{0,}\([^\{]{0,}\{([\n\s]{0,})[\w\W]*?\$this->bootstrap[\w\W]*?;/im';
 	const regexReplace = '$0$4:code:$4';
