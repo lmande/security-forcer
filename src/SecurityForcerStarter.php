@@ -5,7 +5,8 @@ namespace Lmande\SecurityForcer;
 use Lmande\SecurityForcer\Actions\Contracts\Action;
 use Lmande\SecurityForcer\Actions\{
 	ApplyCredential,
-	ApplyDebug,
+	ApplyDebugOff,
+	ApplyDebugOn,
 	ApplyHost,
 	MixConnection,
 	MixCredentials,
@@ -21,7 +22,8 @@ class SecurityForcerStarter
 	protected $optValue   = 0;
 	protected $runActions = [
 		ApplyCredential::class,
-		ApplyDebug::class,
+		ApplyDebugOn::class,
+		ApplyDebugOff::class,
 		ApplyHost::class,
 		NightDistributer::class,
 		RandomLimit::class,
